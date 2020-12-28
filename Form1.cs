@@ -79,9 +79,26 @@ namespace 爬虫
 
 		private async void button1_Click(object sender, EventArgs e)
 		{
-			if (textBoxEx1.Text != string.Empty)
-				domian = textBoxEx1.Text.Replace("{0}", textBox1.Text);
+			if (textBox2.Text != string.Empty)
+				domian = textBoxEx1.Text.Replace("{0}", textBox2.Text);
 			InitBrowser();
+
+			var title = "";
+			await Task.Run(async () =>
+			{
+
+				await Task.Delay(5500);
+				string html = await CefWebBrowserControl.GetHtmlSource(chromiumWebBrowser);
+
+				HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+				doc.LoadHtml(html);//
+
+				title = doc.DocumentNode.SelectSingleNode("//div[@class='breadcrumb']/span[2]").InnerText;
+
+
+
+			});
+			textBox1.Text = title;
 			//string name = "18126015434";
 			//string pwd = "yl123456";
 			//string nameClassid = "el-input__inner";
@@ -207,6 +224,8 @@ namespace 爬虫
 				}
 			}
 
+			button4_Click(null, null);
+
 		}
 
 
@@ -239,7 +258,7 @@ namespace 爬虫
 					//topic_index = doc.DocumentNode.SelectSingleNode("//span[@class='topic-type']/following-sibling::span").InnerText.Replace("\\n", "").Split('/')[1];
 					topic = doc.DocumentNode.SelectSingleNode("//div[@class='test_title']/span").InnerHtml;
 
-					if ("单选题 多选题 判断题 不定项选择题 排序题".Contains(topic_type))
+					if ("单选题 多选题 判断题 不定项选择题 排序题 单项选择题 多项选择题".Contains(topic_type))
 					{
 						var answers = doc.DocumentNode.SelectNodes("//div[@class='test_bot']/dl");
 
@@ -315,35 +334,34 @@ namespace 爬虫
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			SaveFileDialog saveFile1 = new SaveFileDialog();
-			saveFile1.Filter = "文本文件(.txt)|*.txt";
-			saveFile1.FilterIndex = 1;
-			saveFile1.FileName = textBox1.Text;
-			if (saveFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFile1.FileName.Length > 0)
+			//SaveFileDialog saveFile1 = new SaveFileDialog();
+			//saveFile1.Filter = "文本文件(.txt)|*.txt";
+			//saveFile1.FilterIndex = 1;
+			//saveFile1.FileName = textBox1.Text;
+
+			System.IO.StreamWriter sw = new System.IO.StreamWriter($@"C:\Users\繁星\Desktop\123\题库集\{textBox1.Text}.txt", false);
+			try
 			{
-				System.IO.StreamWriter sw = new System.IO.StreamWriter(saveFile1.FileName, false);
-				try
+				if (checkBox1.Checked)
 				{
-					if (checkBox1.Checked)
-					{
-						listBox1.Items.AddRange(listBox2.Items);
-					}
-					foreach (var item in listBox1.Items)
-					{
-						sw.WriteLine(item.ToString());
-					}
+					listBox1.Items.AddRange(listBox2.Items);
 				}
-				catch (Exception ex)
+				foreach (var item in listBox1.Items)
 				{
-
+					sw.WriteLine(item.ToString());
 				}
-				finally
-				{
-					sw.Close();
-				}
-
-				//listBox1.Items.Clear();
 			}
+			catch (Exception ex)
+			{
+
+			}
+			finally
+			{
+				sw.Close();
+
+				this.Close();
+			}
+
 		}
 	}
 

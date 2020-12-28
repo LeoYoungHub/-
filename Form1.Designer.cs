@@ -31,6 +31,7 @@
 			this.components = new System.ComponentModel.Container();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button4 = new System.Windows.Forms.Button();
@@ -79,6 +80,7 @@
 			// 
 			// splitContainer2.Panel1
 			// 
+			this.splitContainer2.Panel1.Controls.Add(this.textBox2);
 			this.splitContainer2.Panel1.Controls.Add(this.checkBox1);
 			this.splitContainer2.Panel1.Controls.Add(this.textBox1);
 			this.splitContainer2.Panel1.Controls.Add(this.button4);
@@ -94,9 +96,18 @@
 			this.splitContainer2.SplitterDistance = 37;
 			this.splitContainer2.TabIndex = 3;
 			// 
+			// textBox2
+			// 
+			this.textBox2.Location = new System.Drawing.Point(389, 8);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(84, 21);
+			this.textBox2.TabIndex = 1;
+			// 
 			// checkBox1
 			// 
 			this.checkBox1.AutoSize = true;
+			this.checkBox1.Checked = true;
+			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox1.Location = new System.Drawing.Point(183, 10);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(72, 16);
@@ -106,14 +117,14 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(438, 8);
+			this.textBox1.Location = new System.Drawing.Point(479, 8);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(82, 21);
+			this.textBox1.Size = new System.Drawing.Size(98, 21);
 			this.textBox1.TabIndex = 3;
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(357, 6);
+			this.button4.Location = new System.Drawing.Point(298, 6);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(75, 23);
 			this.button4.TabIndex = 0;
@@ -125,7 +136,7 @@
 			// 
 			this.textBoxEx1.DecLength = 2;
 			this.textBoxEx1.InputType = HZH_Controls.TextInputType.NotControl;
-			this.textBoxEx1.Location = new System.Drawing.Point(526, 8);
+			this.textBoxEx1.Location = new System.Drawing.Point(583, 8);
 			this.textBoxEx1.MaxValue = new decimal(new int[] {
             1000000,
             0,
@@ -143,8 +154,10 @@
 			this.textBoxEx1.PromptFont = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.textBoxEx1.PromptText = "";
 			this.textBoxEx1.RegexPattern = "";
-			this.textBoxEx1.Size = new System.Drawing.Size(554, 21);
+			this.textBoxEx1.Size = new System.Drawing.Size(497, 21);
 			this.textBoxEx1.TabIndex = 2;
+			this.textBoxEx1.Text = " https://www.kaoshibao.com/online/?paperId={0}&practice=&modal=1&is_recite=&ptype" +
+    "=&text=%E9%A1%BA%E5%BA%8F%E7%BB%83%E4%B9%A0&sequence=0";
 			// 
 			// button3
 			// 
@@ -170,9 +183,9 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(276, 6);
+			this.button2.Location = new System.Drawing.Point(252, 6);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.Size = new System.Drawing.Size(40, 23);
 			this.button2.TabIndex = 0;
 			this.button2.Text = "调试";
 			this.button2.UseVisualStyleBackColor = true;
@@ -262,6 +275,7 @@
 		private System.Windows.Forms.SplitContainer splitContainer3;
 		private System.Windows.Forms.ListBox listBox2;
 		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.TextBox textBox2;
 	}
 }
 
