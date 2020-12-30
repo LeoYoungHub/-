@@ -185,12 +185,19 @@ namespace 爬虫
 					if ("单选题 多选题 判断题 不定项选择题 排序题".Contains(topic_type))
 					{
 						var answers = doc.DocumentNode.SelectNodes("//div[@class='option']");
-						foreach (var item in answers)
+						if (answers != null)
 						{
-							string value1 = item.SelectNodes("./span")[0].InnerText;
-							string value2 = item.SelectNodes("./span")[1].InnerText;
+							foreach (var item in answers)
+							{
+								string value1 = item.SelectNodes("./span")[0].InnerText;
+								string value2 = item.SelectNodes("./span")[1].InnerText;
 
-							listBox1.Items.Add($"{value1}{value2};");
+								listBox1.Items.Add($"{value1}{value2};");
+							}
+						}
+						else
+						{
+							listBox2.Items.Add($"{topic_index}.题目错误");
 						}
 					}
 
@@ -339,7 +346,7 @@ namespace 爬虫
 			//saveFile1.FilterIndex = 1;
 			//saveFile1.FileName = textBox1.Text;
 
-			System.IO.StreamWriter sw = new System.IO.StreamWriter($@"C:\Users\繁星\Desktop\123\题库集\{textBox1.Text}.txt", false);
+			System.IO.StreamWriter sw = new System.IO.StreamWriter($"{textBox1.Text}.txt", false);
 			try
 			{
 				if (checkBox1.Checked)
